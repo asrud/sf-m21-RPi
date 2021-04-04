@@ -32,8 +32,8 @@ jobs:
       run: |
         source .env/bin/activate
         python3 -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip3 install flake8 pytest
+        if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
         
     - name: Lint with flake8
       run: |
@@ -66,7 +66,7 @@ jobs:
       run: |
         sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
         scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin
-        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "pkill -f self_monitoring.py; cd ~/bin/; ./self_monitoring.py &"
+        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "pkill -f self_monitoring.py; cd ~/bin/; pip3 install -r requirements.txt; ./self_monitoring.py &"
         rm $SSH_KEY_PATH
       env:
         SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
