@@ -31,7 +31,7 @@ jobs:
     - name: Install dependencies
       run: |
         source .env/bin/activate
-        python -m pip install --upgrade pip
+        python3 -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
@@ -59,7 +59,7 @@ jobs:
         sudo chmod 600 $SSH_KEY_PATH
       shell: bash
       env:
-        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+        SSH_KEY_SKF: ${{secrets.SSH_KEY_SKF}}
         SSH_KEY_PATH: ${{ github.workspace }}/private.key
 
     - name: Deploy
