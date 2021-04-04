@@ -26,3 +26,27 @@
 ### v0.10
 
 Пробный запуск deploy
+
+### v0.12
+
+На целевой машине создан сервис '/etc/systemd/system/self_monitoring.service'
+
+'''
+[Unit]
+Description=Self monitoring
+After=network.target
+
+[Service]
+Restart=always
+RestartSec=20
+User=pi
+ExecStart=/bin/bash -c "cd /home/pi/bin; ./self_monitoring.py" &
+
+[Install]
+WantedBy=multi-user.target
+'''
+
+Также заданы необходимые переменные окружения по типу 'sudo systemctl set-environment MQTT_PORT=1883'  
+После загрузки нового файла просто перезапускается сервис
+
+
