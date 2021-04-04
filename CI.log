@@ -1,276 +1,247 @@
-2021-04-04T18:08:05.3545137Z ##[section]Starting: Request a runner to run this job
-2021-04-04T18:08:05.6560350Z Found online and idle self-hosted runner in current repository that matches the required labels: 'self-hosted'
-2021-04-04T18:08:05.7468055Z ##[section]Finishing: Request a runner to run this job
-2021-04-04T18:08:13.2059689Z Current runner version: '2.277.1'
-2021-04-04T18:08:13.2081606Z Runner name: 'rpi4'
-2021-04-04T18:08:13.2086869Z Runner group name: 'Default'
-2021-04-04T18:08:13.2098779Z Machine name: 'rpi4'
-2021-04-04T18:08:13.2124037Z ##[group]GITHUB_TOKEN Permissions
-2021-04-04T18:08:13.2132398Z Actions: write
-2021-04-04T18:08:13.2137184Z Checks: write
-2021-04-04T18:08:13.2141912Z Contents: write
-2021-04-04T18:08:13.2146798Z Deployments: write
-2021-04-04T18:08:13.2151662Z Issues: write
-2021-04-04T18:08:13.2156397Z Metadata: read
-2021-04-04T18:08:13.2161766Z OrganizationPackages: write
-2021-04-04T18:08:13.2167143Z Packages: write
-2021-04-04T18:08:13.2172156Z PullRequests: write
-2021-04-04T18:08:13.2177585Z RepositoryProjects: write
-2021-04-04T18:08:13.2183077Z SecurityEvents: write
-2021-04-04T18:08:13.2188154Z Statuses: write
-2021-04-04T18:08:13.2193336Z ##[endgroup]
-2021-04-04T18:08:13.2208076Z Prepare workflow directory
-2021-04-04T18:08:13.4689879Z Prepare all required actions
-2021-04-04T18:08:13.4885687Z Getting action download info
-2021-04-04T18:08:14.5388526Z Download action repository 'actions/checkout@v2'
-2021-04-04T18:08:16.3688724Z ##[group]Run actions/checkout@v2
-2021-04-04T18:08:16.3692728Z with:
-2021-04-04T18:08:16.3695991Z   repository: asrud/sf-m21-RPi
-2021-04-04T18:08:16.3701278Z   token: ***
-2021-04-04T18:08:16.3704268Z   ssh-strict: true
-2021-04-04T18:08:16.3707822Z   persist-credentials: true
-2021-04-04T18:08:16.3711205Z   clean: true
-2021-04-04T18:08:16.3714152Z   fetch-depth: 1
-2021-04-04T18:08:16.3717088Z   lfs: false
-2021-04-04T18:08:16.3720101Z   submodules: false
-2021-04-04T18:08:16.3755124Z ##[endgroup]
-2021-04-04T18:08:17.2789434Z Syncing repository: asrud/sf-m21-RPi
-2021-04-04T18:08:17.2794667Z ##[group]Getting Git version info
-2021-04-04T18:08:17.2801358Z Working directory is '/usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi'
-2021-04-04T18:08:17.2806617Z [command]/usr/bin/git version
-2021-04-04T18:08:17.2810062Z git version 2.20.1
-2021-04-04T18:08:17.2815886Z ##[endgroup]
-2021-04-04T18:08:17.2821097Z [command]/usr/bin/git config --local --get remote.origin.url
-2021-04-04T18:08:17.2828392Z https://github.com/asrud/sf-m21-RPi
-2021-04-04T18:08:17.2833941Z ##[group]Removing previously created refs, to avoid conflicts
-2021-04-04T18:08:17.2840782Z [command]/usr/bin/git rev-parse --symbolic-full-name --verify --quiet HEAD
-2021-04-04T18:08:17.2845267Z refs/heads/master
-2021-04-04T18:08:17.2849936Z [command]/usr/bin/git checkout --detach
-2021-04-04T18:08:17.2854158Z HEAD is now at 59cf8c0 v0.11 With deploy
-2021-04-04T18:08:17.2858273Z M	src/self_monitoring.ini
-2021-04-04T18:08:17.2864769Z [command]/usr/bin/git rev-parse --symbolic-full-name --branches
-2021-04-04T18:08:17.2870060Z refs/heads/master
-2021-04-04T18:08:17.2875928Z [command]/usr/bin/git branch --delete --force master
-2021-04-04T18:08:17.2880603Z Deleted branch master (was 59cf8c0).
-2021-04-04T18:08:17.2886646Z [command]/usr/bin/git rev-parse --symbolic-full-name --remotes=origin
-2021-04-04T18:08:17.2891584Z refs/remotes/origin/master
-2021-04-04T18:08:17.2895445Z ##[endgroup]
-2021-04-04T18:08:17.2900102Z ##[group]Cleaning the repository
-2021-04-04T18:08:17.2905719Z [command]/usr/bin/git clean -ffdx
-2021-04-04T18:08:17.2909654Z Removing .env/
-2021-04-04T18:08:17.2913270Z Removing private.key
-2021-04-04T18:08:17.2918331Z [command]/usr/bin/git reset --hard HEAD
-2021-04-04T18:08:17.2922351Z HEAD is now at 59cf8c0 v0.11 With deploy
-2021-04-04T18:08:17.2927530Z ##[endgroup]
-2021-04-04T18:08:17.2934450Z ##[group]Disabling automatic garbage collection
-2021-04-04T18:08:17.2940186Z [command]/usr/bin/git config --local gc.auto 0
-2021-04-04T18:08:17.2944020Z ##[endgroup]
-2021-04-04T18:08:17.2953475Z ##[group]Setting up auth
-2021-04-04T18:08:17.2959490Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2021-04-04T18:08:17.2968469Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :
-2021-04-04T18:08:17.2977482Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2021-04-04T18:08:17.2989085Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :
-2021-04-04T18:08:17.3268353Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2021-04-04T18:08:17.3273888Z ##[endgroup]
-2021-04-04T18:08:17.3277470Z ##[group]Fetching the repository
-2021-04-04T18:08:17.3286115Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +02e4a8e402d4e05c6b51c14417930ecc48e449e8:refs/remotes/origin/master
-2021-04-04T18:08:18.2164290Z remote: Enumerating objects: 11, done.        
-2021-04-04T18:08:18.2173133Z remote: Counting objects:   9% (1/11)        
-2021-04-04T18:08:18.2180650Z remote: Counting objects:  18% (2/11)        
-2021-04-04T18:08:18.2202453Z remote: Counting objects:  27% (3/11)        
-2021-04-04T18:08:18.2217128Z remote: Counting objects:  36% (4/11)        
-2021-04-04T18:08:18.2227089Z remote: Counting objects:  45% (5/11)        
-2021-04-04T18:08:18.2235484Z remote: Counting objects:  54% (6/11)        
-2021-04-04T18:08:18.2242389Z remote: Counting objects:  63% (7/11)        
-2021-04-04T18:08:18.2249244Z remote: Counting objects:  72% (8/11)        
-2021-04-04T18:08:18.2270758Z remote: Counting objects:  81% (9/11)        
-2021-04-04T18:08:18.2275734Z remote: Counting objects:  90% (10/11)        
-2021-04-04T18:08:18.2279682Z remote: Counting objects: 100% (11/11)        
-2021-04-04T18:08:18.2284805Z remote: Counting objects: 100% (11/11), done.        
-2021-04-04T18:08:18.2289021Z remote: Compressing objects:  50% (1/2)        
-2021-04-04T18:08:18.2293056Z remote: Compressing objects: 100% (2/2)        
-2021-04-04T18:08:18.2297536Z remote: Compressing objects: 100% (2/2), done.        
-2021-04-04T18:08:18.2305405Z remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0        
-2021-04-04T18:08:18.2438614Z From https://github.com/asrud/sf-m21-RPi
-2021-04-04T18:08:18.2446698Z  + 59cf8c0...02e4a8e 02e4a8e402d4e05c6b51c14417930ecc48e449e8 -> origin/master  (forced update)
-2021-04-04T18:08:18.2531742Z ##[endgroup]
-2021-04-04T18:08:18.2535994Z ##[group]Determining the checkout info
-2021-04-04T18:08:18.2539964Z ##[endgroup]
-2021-04-04T18:08:18.2543347Z ##[group]Checking out the ref
-2021-04-04T18:08:18.2549692Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
-2021-04-04T18:08:18.2649123Z Warning: you are leaving 1 commit behind, not connected to
-2021-04-04T18:08:18.2653696Z any of your branches:
-2021-04-04T18:08:18.2655837Z 
-2021-04-04T18:08:18.2659248Z   59cf8c0 v0.11 With deploy
-2021-04-04T18:08:18.2661294Z 
-2021-04-04T18:08:18.2665043Z If you want to keep it by creating a new branch, this may be a good time
-2021-04-04T18:08:18.2669017Z to do so with:
-2021-04-04T18:08:18.2670991Z 
-2021-04-04T18:08:18.2675633Z  git branch <new-branch-name> 59cf8c0
-2021-04-04T18:08:18.2678117Z 
-2021-04-04T18:08:18.2740316Z Switched to a new branch 'master'
-2021-04-04T18:08:18.2746474Z Branch 'master' set up to track remote branch 'master' from 'origin'.
-2021-04-04T18:08:18.2757602Z ##[endgroup]
-2021-04-04T18:08:18.2886577Z [command]/usr/bin/git log -1 --format='%H'
-2021-04-04T18:08:18.3043614Z '02e4a8e402d4e05c6b51c14417930ecc48e449e8'
-2021-04-04T18:08:18.3621527Z ##[group]Run if [[ `uname` != "Darwin" ]]; then sudo apt-get -y install python3-venv; fi
-2021-04-04T18:08:18.3631014Z [36;1mif [[ `uname` != "Darwin" ]]; then sudo apt-get -y install python3-venv; fi[0m
-2021-04-04T18:08:18.3635296Z [36;1mpython3 -m venv .env[0m
-2021-04-04T18:08:18.3743516Z shell: /bin/bash -e {0}
-2021-04-04T18:08:18.3746643Z ##[endgroup]
-2021-04-04T18:08:18.4902968Z Reading package lists...
-2021-04-04T18:08:18.9714692Z Building dependency tree...
-2021-04-04T18:08:18.9789160Z Reading state information...
-2021-04-04T18:08:19.8796606Z python3-venv is already the newest version (3.7.3-1).
-2021-04-04T18:08:19.8807201Z The following packages were automatically installed and are no longer required:
-2021-04-04T18:08:19.8820114Z   gconf-service gconf2-common libexiv2-14 libgconf-2-4 libgfortran3
-2021-04-04T18:08:19.8850870Z   libgmime-2.6-0 libncurses5 libssl1.0.2 lxplug-volume rpi-eeprom-images
-2021-04-04T18:08:19.8863167Z   uuid-dev
-2021-04-04T18:08:19.8873143Z Use 'sudo apt autoremove' to remove them.
-2021-04-04T18:08:19.9844151Z 0 upgraded, 0 newly installed, 0 to remove and 83 not upgraded.
-2021-04-04T18:08:24.8283790Z ##[group]Run source .env/bin/activate
-2021-04-04T18:08:24.8287912Z [36;1msource .env/bin/activate[0m
-2021-04-04T18:08:24.8291548Z [36;1mpython3 -m pip install --upgrade pip[0m
-2021-04-04T18:08:24.8295249Z [36;1mpip3 install flake8 pytest[0m
-2021-04-04T18:08:24.8299761Z [36;1mif [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi[0m
-2021-04-04T18:08:24.8404665Z shell: /bin/bash -e {0}
-2021-04-04T18:08:24.8407770Z ##[endgroup]
-2021-04-04T18:08:27.8086488Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-2021-04-04T18:08:28.7415870Z Collecting pip
-2021-04-04T18:08:29.2792661Z   Using cached https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl
-2021-04-04T18:08:29.5540540Z Installing collected packages: pip
-2021-04-04T18:08:29.5560980Z   Found existing installation: pip 18.1
-2021-04-04T18:08:29.8859916Z     Uninstalling pip-18.1:
-2021-04-04T18:08:29.9246618Z       Successfully uninstalled pip-18.1
-2021-04-04T18:08:32.4372196Z Successfully installed pip-21.0.1
-2021-04-04T18:08:33.6076385Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-2021-04-04T18:08:34.6074584Z Collecting flake8
-2021-04-04T18:08:34.6951981Z   Using cached https://www.piwheels.org/simple/flake8/flake8-3.9.0-py2.py3-none-any.whl (73 kB)
-2021-04-04T18:08:35.8453243Z Collecting pytest
-2021-04-04T18:08:36.0723242Z   Using cached https://www.piwheels.org/simple/pytest/pytest-6.2.3-py3-none-any.whl (280 kB)
-2021-04-04T18:08:36.3868143Z Collecting pycodestyle<2.8.0,>=2.7.0
-2021-04-04T18:08:36.4690974Z   Using cached https://www.piwheels.org/simple/pycodestyle/pycodestyle-2.7.0-py2.py3-none-any.whl (41 kB)
-2021-04-04T18:08:37.1773377Z Collecting importlib-metadata
-2021-04-04T18:08:37.2564622Z   Using cached https://www.piwheels.org/simple/importlib-metadata/importlib_metadata-3.10.0-py3-none-any.whl (14 kB)
-2021-04-04T18:08:37.4556274Z Collecting mccabe<0.7.0,>=0.6.0
-2021-04-04T18:08:37.5396727Z   Using cached https://www.piwheels.org/simple/mccabe/mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
-2021-04-04T18:08:37.7836019Z Collecting pyflakes<2.4.0,>=2.3.0
-2021-04-04T18:08:37.8660507Z   Using cached https://www.piwheels.org/simple/pyflakes/pyflakes-2.3.1-py2.py3-none-any.whl (68 kB)
-2021-04-04T18:08:38.1436414Z Collecting iniconfig
-2021-04-04T18:08:38.2280711Z   Using cached https://www.piwheels.org/simple/iniconfig/iniconfig-1.1.1-py2.py3-none-any.whl (5.0 kB)
-2021-04-04T18:08:38.5100587Z Collecting attrs>=19.2.0
-2021-04-04T18:08:38.5887448Z   Using cached https://www.piwheels.org/simple/attrs/attrs-20.3.0-py2.py3-none-any.whl (49 kB)
-2021-04-04T18:08:38.8296186Z Collecting pluggy<1.0.0a1,>=0.12
-2021-04-04T18:08:38.9074147Z   Using cached https://www.piwheels.org/simple/pluggy/pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
-2021-04-04T18:08:39.1433909Z Collecting toml
-2021-04-04T18:08:39.2277662Z   Using cached https://www.piwheels.org/simple/toml/toml-0.10.2-py2.py3-none-any.whl (16 kB)
-2021-04-04T18:08:39.5225702Z Collecting py>=1.8.2
-2021-04-04T18:08:39.6095155Z   Using cached https://www.piwheels.org/simple/py/py-1.10.0-py2.py3-none-any.whl (97 kB)
-2021-04-04T18:08:40.2752580Z Collecting packaging
-2021-04-04T18:08:40.3582716Z   Using cached https://www.piwheels.org/simple/packaging/packaging-20.9-py2.py3-none-any.whl (40 kB)
-2021-04-04T18:08:40.7884579Z Collecting typing-extensions>=3.6.4
-2021-04-04T18:08:40.8686925Z   Using cached https://www.piwheels.org/simple/typing-extensions/typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
-2021-04-04T18:08:41.1997571Z Collecting zipp>=0.5
-2021-04-04T18:08:41.2776324Z   Using cached https://www.piwheels.org/simple/zipp/zipp-3.4.1-py3-none-any.whl (5.2 kB)
-2021-04-04T18:08:42.0277845Z Collecting pyparsing>=2.0.2
-2021-04-04T18:08:42.1121901Z   Using cached https://www.piwheels.org/simple/pyparsing/pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
-2021-04-04T18:08:42.4930550Z Installing collected packages: zipp, typing-extensions, pyparsing, importlib-metadata, toml, pyflakes, pycodestyle, py, pluggy, packaging, mccabe, iniconfig, attrs, pytest, flake8
-2021-04-04T18:08:44.2155010Z Successfully installed attrs-20.3.0 flake8-3.9.0 importlib-metadata-3.10.0 iniconfig-1.1.1 mccabe-0.6.1 packaging-20.9 pluggy-0.13.1 py-1.10.0 pycodestyle-2.7.0 pyflakes-2.3.1 pyparsing-2.4.7 pytest-6.2.3 toml-0.10.2 typing-extensions-3.7.4.3 zipp-3.4.1
-2021-04-04T18:08:44.4253615Z ##[group]Run source .env/bin/activate
-2021-04-04T18:08:44.4258206Z [36;1msource .env/bin/activate[0m
-2021-04-04T18:08:44.4262654Z [36;1m# stop the build if there are Python syntax errors or undefined names[0m
-2021-04-04T18:08:44.4286344Z [36;1mflake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics[0m
-2021-04-04T18:08:44.4291940Z [36;1m# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide[0m
-2021-04-04T18:08:44.4297895Z [36;1mflake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics[0m
-2021-04-04T18:08:44.4433411Z shell: /bin/bash -e {0}
-2021-04-04T18:08:44.4436567Z ##[endgroup]
-2021-04-04T18:08:45.2032860Z 0
-2021-04-04T18:08:45.9335776Z src/main.py:4:1: W293 blank line contains whitespace
-2021-04-04T18:08:45.9345556Z src/main.py:4:5: W292 no newline at end of file
-2021-04-04T18:08:45.9352852Z src/self_monitoring.py:4:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9359675Z src/self_monitoring.py:5:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9392554Z src/self_monitoring.py:5:1: F401 'glob' imported but unused
-2021-04-04T18:08:45.9408958Z src/self_monitoring.py:6:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9414594Z src/self_monitoring.py:7:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9420018Z src/self_monitoring.py:8:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9425319Z src/self_monitoring.py:9:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9431255Z src/self_monitoring.py:10:1: E402 module level import not at top of file
-2021-04-04T18:08:45.9438729Z src/self_monitoring.py:12:1: E266 too many leading '#' for block comment
-2021-04-04T18:08:45.9444056Z src/self_monitoring.py:13:1: E302 expected 2 blank lines, found 1
-2021-04-04T18:08:45.9449133Z src/self_monitoring.py:17:5: E301 expected 1 blank line, found 0
-2021-04-04T18:08:45.9456340Z src/self_monitoring.py:19:13: E265 block comment should start with '# '
-2021-04-04T18:08:45.9462021Z src/self_monitoring.py:20:20: E225 missing whitespace around operator
-2021-04-04T18:08:45.9469330Z src/self_monitoring.py:24:1: E266 too many leading '#' for block comment
-2021-04-04T18:08:45.9476132Z src/self_monitoring.py:27:1: E266 too many leading '#' for block comment
-2021-04-04T18:08:45.9482882Z src/self_monitoring.py:35:9: F841 local variable 'MQTT_PORT' is assigned to but never used
-2021-04-04T18:08:45.9488327Z src/self_monitoring.py:43:16: E225 missing whitespace around operator
-2021-04-04T18:08:45.9493794Z src/self_monitoring.py:49:10: E225 missing whitespace around operator
-2021-04-04T18:08:45.9499669Z src/self_monitoring.py:51:14: E225 missing whitespace around operator
-2021-04-04T18:08:45.9508265Z src/self_monitoring.py:55:5: E265 block comment should start with '# '
-2021-04-04T18:08:45.9515599Z src/self_monitoring.py:60:1: E266 too many leading '#' for block comment
-2021-04-04T18:08:45.9521151Z src/self_monitoring.py:62:14: E225 missing whitespace around operator
-2021-04-04T18:08:45.9528763Z src/self_monitoring.py:72:18: E211 whitespace before '('
-2021-04-04T18:08:45.9535277Z src/self_monitoring.py:75:8: E225 missing whitespace around operator
-2021-04-04T18:08:45.9541540Z src/self_monitoring.py:79:1: E305 expected 2 blank lines after class or function definition, found 1
-2021-04-04T18:08:45.9548701Z 1     E211 whitespace before '('
-2021-04-04T18:08:45.9552828Z 6     E225 missing whitespace around operator
-2021-04-04T18:08:45.9559034Z 2     E265 block comment should start with '# '
-2021-04-04T18:08:45.9564872Z 4     E266 too many leading '#' for block comment
-2021-04-04T18:08:45.9568909Z 1     E301 expected 1 blank line, found 0
-2021-04-04T18:08:45.9572971Z 1     E302 expected 2 blank lines, found 1
-2021-04-04T18:08:45.9577681Z 1     E305 expected 2 blank lines after class or function definition, found 1
-2021-04-04T18:08:45.9582411Z 7     E402 module level import not at top of file
-2021-04-04T18:08:45.9587944Z 1     F401 'glob' imported but unused
-2021-04-04T18:08:45.9594666Z 1     F841 local variable 'MQTT_PORT' is assigned to but never used
-2021-04-04T18:08:45.9599418Z 1     W292 no newline at end of file
-2021-04-04T18:08:45.9603378Z 1     W293 blank line contains whitespace
-2021-04-04T18:08:45.9606996Z 27
-2021-04-04T18:08:46.0137195Z ##[group]Run source .env/bin/activate
-2021-04-04T18:08:46.0141247Z [36;1msource .env/bin/activate[0m
-2021-04-04T18:08:46.0144801Z [36;1m# Tests not implemented yet[0m
-2021-04-04T18:08:46.0148113Z [36;1m# src/main.py [0m
-2021-04-04T18:08:46.0151074Z [36;1mecho "$WORKDIR"[0m
-2021-04-04T18:08:46.0252401Z shell: /bin/bash -e {0}
-2021-04-04T18:08:46.0255236Z env:
-2021-04-04T18:08:46.0259056Z   WORKDIR: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi
-2021-04-04T18:08:46.0263109Z ##[endgroup]
-2021-04-04T18:08:46.0490714Z /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi
-2021-04-04T18:08:46.0862653Z ##[group]Run mkdir -p ~/.ssh/
-2021-04-04T18:08:46.0866091Z [36;1mmkdir -p ~/.ssh/[0m
-2021-04-04T18:08:46.0869300Z [36;1mecho "$SSH_KEY_SKF" > $SSH_KEY_PATH[0m
-2021-04-04T18:08:46.0872770Z [36;1msudo chmod 600 $SSH_KEY_PATH[0m
-2021-04-04T18:08:46.0976609Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
-2021-04-04T18:08:46.0980164Z env:
-2021-04-04T18:08:46.1083375Z   SSH_KEY_SKF: ***
+2021-04-04T18:34:04.6573160Z ##[section]Starting: Request a runner to run this job
+2021-04-04T18:34:04.7622985Z Found online and idle self-hosted runner in current repository that matches the required labels: 'self-hosted'
+2021-04-04T18:34:04.8217123Z ##[section]Finishing: Request a runner to run this job
+2021-04-04T18:34:12.5223154Z Current runner version: '2.277.1'
+2021-04-04T18:34:12.5247244Z Runner name: 'rpi4'
+2021-04-04T18:34:12.5253001Z Runner group name: 'Default'
+2021-04-04T18:34:12.5265467Z Machine name: 'rpi4'
+2021-04-04T18:34:12.5292376Z ##[group]GITHUB_TOKEN Permissions
+2021-04-04T18:34:12.5300626Z Actions: write
+2021-04-04T18:34:12.5305757Z Checks: write
+2021-04-04T18:34:12.5310869Z Contents: write
+2021-04-04T18:34:12.5316195Z Deployments: write
+2021-04-04T18:34:12.5321516Z Issues: write
+2021-04-04T18:34:12.5326929Z Metadata: read
+2021-04-04T18:34:12.5332679Z OrganizationPackages: write
+2021-04-04T18:34:12.5338454Z Packages: write
+2021-04-04T18:34:12.5343819Z PullRequests: write
+2021-04-04T18:34:12.5349606Z RepositoryProjects: write
+2021-04-04T18:34:12.5355490Z SecurityEvents: write
+2021-04-04T18:34:12.5360957Z Statuses: write
+2021-04-04T18:34:12.5366592Z ##[endgroup]
+2021-04-04T18:34:12.5381380Z Prepare workflow directory
+2021-04-04T18:34:12.7958635Z Prepare all required actions
+2021-04-04T18:34:12.8135078Z Getting action download info
+2021-04-04T18:34:13.8231922Z Download action repository 'actions/checkout@v2'
+2021-04-04T18:34:15.7870600Z ##[group]Run actions/checkout@v2
+2021-04-04T18:34:15.7909298Z with:
+2021-04-04T18:34:15.7912556Z   repository: asrud/sf-m21-RPi
+2021-04-04T18:34:15.7917603Z   token: ***
+2021-04-04T18:34:15.7920540Z   ssh-strict: true
+2021-04-04T18:34:15.7924074Z   persist-credentials: true
+2021-04-04T18:34:15.7928053Z   clean: true
+2021-04-04T18:34:15.7931024Z   fetch-depth: 1
+2021-04-04T18:34:15.7933973Z   lfs: false
+2021-04-04T18:34:15.7936947Z   submodules: false
+2021-04-04T18:34:15.7940021Z ##[endgroup]
+2021-04-04T18:34:16.3957687Z Syncing repository: asrud/sf-m21-RPi
+2021-04-04T18:34:16.3971417Z ##[group]Getting Git version info
+2021-04-04T18:34:16.3979889Z Working directory is '/usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi'
+2021-04-04T18:34:16.3985548Z [command]/usr/bin/git version
+2021-04-04T18:34:16.3989179Z git version 2.20.1
+2021-04-04T18:34:16.3995648Z ##[endgroup]
+2021-04-04T18:34:16.4001444Z [command]/usr/bin/git config --local --get remote.origin.url
+2021-04-04T18:34:16.4008374Z https://github.com/asrud/sf-m21-RPi
+2021-04-04T18:34:16.4014076Z ##[group]Removing previously created refs, to avoid conflicts
+2021-04-04T18:34:16.4021082Z [command]/usr/bin/git rev-parse --symbolic-full-name --verify --quiet HEAD
+2021-04-04T18:34:16.4030215Z refs/heads/master
+2021-04-04T18:34:16.4042116Z [command]/usr/bin/git checkout --detach
+2021-04-04T18:34:16.4047763Z HEAD is now at 3aa9ec6 v0.20 CI.log added, linter suggestions applied
+2021-04-04T18:34:16.4063338Z [command]/usr/bin/git rev-parse --symbolic-full-name --branches
+2021-04-04T18:34:16.4068962Z refs/heads/master
+2021-04-04T18:34:16.4075363Z [command]/usr/bin/git branch --delete --force master
+2021-04-04T18:34:16.4080791Z Deleted branch master (was 3aa9ec6).
+2021-04-04T18:34:16.4087971Z [command]/usr/bin/git rev-parse --symbolic-full-name --remotes=origin
+2021-04-04T18:34:16.4094206Z refs/remotes/origin/master
+2021-04-04T18:34:16.4098862Z ##[endgroup]
+2021-04-04T18:34:16.4103845Z ##[group]Cleaning the repository
+2021-04-04T18:34:16.4110365Z [command]/usr/bin/git clean -ffdx
+2021-04-04T18:34:16.4977643Z Removing .env/
+2021-04-04T18:34:16.4983376Z [command]/usr/bin/git reset --hard HEAD
+2021-04-04T18:34:16.5071226Z HEAD is now at 3aa9ec6 v0.20 CI.log added, linter suggestions applied
+2021-04-04T18:34:16.5084139Z ##[endgroup]
+2021-04-04T18:34:16.5094269Z ##[group]Disabling automatic garbage collection
+2021-04-04T18:34:16.5109684Z [command]/usr/bin/git config --local gc.auto 0
+2021-04-04T18:34:16.5206586Z ##[endgroup]
+2021-04-04T18:34:16.5224400Z ##[group]Setting up auth
+2021-04-04T18:34:16.5253048Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2021-04-04T18:34:16.5366730Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :
+2021-04-04T18:34:16.6217497Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2021-04-04T18:34:16.6310664Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :
+2021-04-04T18:34:16.7120908Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2021-04-04T18:34:16.7290828Z ##[endgroup]
+2021-04-04T18:34:16.7294990Z ##[group]Fetching the repository
+2021-04-04T18:34:16.7434994Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +441dc3946f36147f5bb6c89d9c83222108f0f261:refs/remotes/origin/master
+2021-04-04T18:34:17.7240607Z remote: Enumerating objects: 9, done.        
+2021-04-04T18:34:17.7251550Z remote: Counting objects:  11% (1/9)        
+2021-04-04T18:34:17.7275498Z remote: Counting objects:  22% (2/9)        
+2021-04-04T18:34:17.7288097Z remote: Counting objects:  33% (3/9)        
+2021-04-04T18:34:17.7297345Z remote: Counting objects:  44% (4/9)        
+2021-04-04T18:34:17.7304288Z remote: Counting objects:  55% (5/9)        
+2021-04-04T18:34:17.7310657Z remote: Counting objects:  66% (6/9)        
+2021-04-04T18:34:17.7317797Z remote: Counting objects:  77% (7/9)        
+2021-04-04T18:34:17.7325234Z remote: Counting objects:  88% (8/9)        
+2021-04-04T18:34:17.7331869Z remote: Counting objects: 100% (9/9)        
+2021-04-04T18:34:17.7434225Z remote: Counting objects: 100% (9/9), done.        
+2021-04-04T18:34:17.7449184Z remote: Compressing objects:  50% (1/2)        
+2021-04-04T18:34:17.7455036Z remote: Compressing objects: 100% (2/2)        
+2021-04-04T18:34:17.7462210Z remote: Compressing objects: 100% (2/2), done.        
+2021-04-04T18:34:17.7472757Z remote: Total 5 (delta 2), reused 4 (delta 1), pack-reused 0        
+2021-04-04T18:34:17.7557044Z From https://github.com/asrud/sf-m21-RPi
+2021-04-04T18:34:17.7567117Z  + 3aa9ec6...441dc39 441dc3946f36147f5bb6c89d9c83222108f0f261 -> origin/master  (forced update)
+2021-04-04T18:34:17.7664405Z ##[endgroup]
+2021-04-04T18:34:17.7671043Z ##[group]Determining the checkout info
+2021-04-04T18:34:17.7679568Z ##[endgroup]
+2021-04-04T18:34:17.7684518Z ##[group]Checking out the ref
+2021-04-04T18:34:17.7692578Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+2021-04-04T18:34:17.7811985Z Warning: you are leaving 1 commit behind, not connected to
+2021-04-04T18:34:17.7818026Z any of your branches:
+2021-04-04T18:34:17.7820769Z 
+2021-04-04T18:34:17.7825250Z   3aa9ec6 v0.20 CI.log added, linter suggestions applied
+2021-04-04T18:34:17.7842896Z 
+2021-04-04T18:34:17.7847170Z If you want to keep it by creating a new branch, this may be a good time
+2021-04-04T18:34:17.7857202Z to do so with:
+2021-04-04T18:34:17.7862716Z 
+2021-04-04T18:34:17.7871830Z  git branch <new-branch-name> 3aa9ec6
+2021-04-04T18:34:17.7874960Z 
+2021-04-04T18:34:17.7880326Z Switched to a new branch 'master'
+2021-04-04T18:34:17.7886646Z Branch 'master' set up to track remote branch 'master' from 'origin'.
+2021-04-04T18:34:17.7892010Z ##[endgroup]
+2021-04-04T18:34:17.8085812Z [command]/usr/bin/git log -1 --format='%H'
+2021-04-04T18:34:17.8179645Z '441dc3946f36147f5bb6c89d9c83222108f0f261'
+2021-04-04T18:34:17.8734290Z ##[group]Run if [[ `uname` != "Darwin" ]]; then sudo apt-get -y install python3-venv; fi
+2021-04-04T18:34:17.8740509Z [36;1mif [[ `uname` != "Darwin" ]]; then sudo apt-get -y install python3-venv; fi[0m
+2021-04-04T18:34:17.8744736Z [36;1mpython3 -m venv .env[0m
+2021-04-04T18:34:17.8841046Z shell: /bin/bash -e {0}
+2021-04-04T18:34:17.8844077Z ##[endgroup]
+2021-04-04T18:34:18.0083727Z Reading package lists...
+2021-04-04T18:34:18.5037671Z Building dependency tree...
+2021-04-04T18:34:18.5113495Z Reading state information...
+2021-04-04T18:34:19.3507888Z python3-venv is already the newest version (3.7.3-1).
+2021-04-04T18:34:19.3516567Z The following packages were automatically installed and are no longer required:
+2021-04-04T18:34:19.3526629Z   gconf-service gconf2-common libexiv2-14 libgconf-2-4 libgfortran3
+2021-04-04T18:34:19.3537015Z   libgmime-2.6-0 libncurses5 libssl1.0.2 lxplug-volume rpi-eeprom-images
+2021-04-04T18:34:19.3545619Z   uuid-dev
+2021-04-04T18:34:19.3553939Z Use 'sudo apt autoremove' to remove them.
+2021-04-04T18:34:19.4396938Z 0 upgraded, 0 newly installed, 0 to remove and 83 not upgraded.
+2021-04-04T18:34:24.2735459Z ##[group]Run source .env/bin/activate
+2021-04-04T18:34:24.2739503Z [36;1msource .env/bin/activate[0m
+2021-04-04T18:34:24.2743221Z [36;1mpython3 -m pip install --upgrade pip[0m
+2021-04-04T18:34:24.2746970Z [36;1mpip3 install flake8 pytest[0m
+2021-04-04T18:34:24.2751592Z [36;1mif [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi[0m
+2021-04-04T18:34:24.2843778Z shell: /bin/bash -e {0}
+2021-04-04T18:34:24.2846825Z ##[endgroup]
+2021-04-04T18:34:27.2047567Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+2021-04-04T18:34:28.2367574Z Collecting pip
+2021-04-04T18:34:28.7780109Z   Using cached https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl
+2021-04-04T18:34:29.0530585Z Installing collected packages: pip
+2021-04-04T18:34:29.0536818Z   Found existing installation: pip 18.1
+2021-04-04T18:34:29.3773976Z     Uninstalling pip-18.1:
+2021-04-04T18:34:29.4164275Z       Successfully uninstalled pip-18.1
+2021-04-04T18:34:31.8993532Z Successfully installed pip-21.0.1
+2021-04-04T18:34:33.0797570Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+2021-04-04T18:34:34.0662411Z Collecting flake8
+2021-04-04T18:34:34.1662823Z   Using cached https://www.piwheels.org/simple/flake8/flake8-3.9.0-py2.py3-none-any.whl (73 kB)
+2021-04-04T18:34:35.3180094Z Collecting pytest
+2021-04-04T18:34:35.4429887Z   Using cached https://www.piwheels.org/simple/pytest/pytest-6.2.3-py3-none-any.whl (280 kB)
+2021-04-04T18:34:35.7472747Z Collecting pyflakes<2.4.0,>=2.3.0
+2021-04-04T18:34:35.8360529Z   Using cached https://www.piwheels.org/simple/pyflakes/pyflakes-2.3.1-py2.py3-none-any.whl (68 kB)
+2021-04-04T18:34:36.1378496Z Collecting pycodestyle<2.8.0,>=2.7.0
+2021-04-04T18:34:36.2397086Z   Using cached https://www.piwheels.org/simple/pycodestyle/pycodestyle-2.7.0-py2.py3-none-any.whl (41 kB)
+2021-04-04T18:34:36.4370813Z Collecting mccabe<0.7.0,>=0.6.0
+2021-04-04T18:34:36.5197407Z   Using cached https://www.piwheels.org/simple/mccabe/mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+2021-04-04T18:34:37.2191154Z Collecting importlib-metadata
+2021-04-04T18:34:37.3000473Z   Using cached https://www.piwheels.org/simple/importlib-metadata/importlib_metadata-3.10.0-py3-none-any.whl (14 kB)
+2021-04-04T18:34:37.6245068Z Collecting toml
+2021-04-04T18:34:37.7050324Z   Using cached https://www.piwheels.org/simple/toml/toml-0.10.2-py2.py3-none-any.whl (16 kB)
+2021-04-04T18:34:38.6877214Z Collecting packaging
+2021-04-04T18:34:38.9755927Z   Using cached https://www.piwheels.org/simple/packaging/packaging-20.9-py2.py3-none-any.whl (40 kB)
+2021-04-04T18:34:39.2230432Z Collecting attrs>=19.2.0
+2021-04-04T18:34:39.3105380Z   Using cached https://www.piwheels.org/simple/attrs/attrs-20.3.0-py2.py3-none-any.whl (49 kB)
+2021-04-04T18:34:39.5257345Z Collecting iniconfig
+2021-04-04T18:34:39.6136967Z   Using cached https://www.piwheels.org/simple/iniconfig/iniconfig-1.1.1-py2.py3-none-any.whl (5.0 kB)
+2021-04-04T18:34:39.8497073Z Collecting pluggy<1.0.0a1,>=0.12
+2021-04-04T18:34:39.9401081Z   Using cached https://www.piwheels.org/simple/pluggy/pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+2021-04-04T18:34:40.4608678Z Collecting py>=1.8.2
+2021-04-04T18:34:40.5481660Z   Using cached https://www.piwheels.org/simple/py/py-1.10.0-py2.py3-none-any.whl (97 kB)
+2021-04-04T18:34:40.9034978Z Collecting typing-extensions>=3.6.4
+2021-04-04T18:34:40.9820212Z   Using cached https://www.piwheels.org/simple/typing-extensions/typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
+2021-04-04T18:34:41.3183100Z Collecting zipp>=0.5
+2021-04-04T18:34:41.3975082Z   Using cached https://www.piwheels.org/simple/zipp/zipp-3.4.1-py3-none-any.whl (5.2 kB)
+2021-04-04T18:34:42.0584567Z Collecting pyparsing>=2.0.2
+2021-04-04T18:34:42.1444500Z   Using cached https://www.piwheels.org/simple/pyparsing/pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+2021-04-04T18:34:42.4950882Z Installing collected packages: zipp, typing-extensions, pyparsing, importlib-metadata, toml, pyflakes, pycodestyle, py, pluggy, packaging, mccabe, iniconfig, attrs, pytest, flake8
+2021-04-04T18:34:44.2527480Z Successfully installed attrs-20.3.0 flake8-3.9.0 importlib-metadata-3.10.0 iniconfig-1.1.1 mccabe-0.6.1 packaging-20.9 pluggy-0.13.1 py-1.10.0 pycodestyle-2.7.0 pyflakes-2.3.1 pyparsing-2.4.7 pytest-6.2.3 toml-0.10.2 typing-extensions-3.7.4.3 zipp-3.4.1
+2021-04-04T18:34:44.4626173Z ##[group]Run source .env/bin/activate
+2021-04-04T18:34:44.4630581Z [36;1msource .env/bin/activate[0m
+2021-04-04T18:34:44.4634958Z [36;1m# stop the build if there are Python syntax errors or undefined names[0m
+2021-04-04T18:34:44.4640362Z [36;1mflake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics[0m
+2021-04-04T18:34:44.4645744Z [36;1m# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide[0m
+2021-04-04T18:34:44.4651694Z [36;1mflake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics[0m
+2021-04-04T18:34:44.4756101Z shell: /bin/bash -e {0}
+2021-04-04T18:34:44.4759104Z ##[endgroup]
+2021-04-04T18:34:45.2104759Z 0
+2021-04-04T18:34:45.9521358Z src/self_monitoring.py:4:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9562702Z src/self_monitoring.py:6:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9570955Z src/self_monitoring.py:7:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9578633Z src/self_monitoring.py:8:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9586197Z src/self_monitoring.py:9:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9593774Z src/self_monitoring.py:10:1: E402 module level import not at top of file
+2021-04-04T18:34:45.9604165Z src/self_monitoring.py:13:1: E266 too many leading '#' for block comment
+2021-04-04T18:34:45.9614159Z src/self_monitoring.py:26:1: E266 too many leading '#' for block comment
+2021-04-04T18:34:45.9624028Z src/self_monitoring.py:29:1: E266 too many leading '#' for block comment
+2021-04-04T18:34:45.9634219Z src/self_monitoring.py:57:5: E265 block comment should start with '# '
+2021-04-04T18:34:45.9643891Z src/self_monitoring.py:62:1: E266 too many leading '#' for block comment
+2021-04-04T18:34:45.9652586Z 1     E265 block comment should start with '# '
+2021-04-04T18:34:45.9660201Z 4     E266 too many leading '#' for block comment
+2021-04-04T18:34:45.9666286Z 6     E402 module level import not at top of file
+2021-04-04T18:34:45.9671187Z 11
+2021-04-04T18:34:46.0557669Z ##[group]Run source .env/bin/activate
+2021-04-04T18:34:46.0561719Z [36;1msource .env/bin/activate[0m
+2021-04-04T18:34:46.0565202Z [36;1m# Tests not implemented yet[0m
+2021-04-04T18:34:46.0568536Z [36;1m# src/main.py [0m
+2021-04-04T18:34:46.0571592Z [36;1mecho "$WORKDIR"[0m
+2021-04-04T18:34:46.0670426Z shell: /bin/bash -e {0}
+2021-04-04T18:34:46.0673309Z env:
+2021-04-04T18:34:46.0677238Z   WORKDIR: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi
+2021-04-04T18:34:46.0681340Z ##[endgroup]
+2021-04-04T18:34:46.0907199Z /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi
+2021-04-04T18:34:46.1310736Z ##[group]Run mkdir -p ~/.ssh/
+2021-04-04T18:34:46.1314192Z [36;1mmkdir -p ~/.ssh/[0m
+2021-04-04T18:34:46.1317402Z [36;1mecho "$SSH_KEY_SKF" > $SSH_KEY_PATH[0m
+2021-04-04T18:34:46.1320796Z [36;1msudo chmod 600 $SSH_KEY_PATH[0m
+2021-04-04T18:34:46.1418376Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2021-04-04T18:34:46.1421911Z env:
+2021-04-04T18:34:46.1531535Z   SSH_KEY_SKF: ***
 
-2021-04-04T18:08:46.1087759Z   SSH_KEY_PATH: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi/private.key
-2021-04-04T18:08:46.1092152Z ##[endgroup]
-2021-04-04T18:08:46.1718234Z ##[group]Run sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
-2021-04-04T18:08:46.1724152Z [36;1msed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini[0m
-2021-04-04T18:08:46.1731871Z [36;1mscp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin[0m
-2021-04-04T18:08:46.1740921Z [36;1mssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "cd ~/bin/; pip3 install -r requirements.txt; sudo systemctl restart self_monitoring"[0m
-2021-04-04T18:08:46.1747804Z [36;1mrm $SSH_KEY_PATH[0m
-2021-04-04T18:08:46.1843921Z shell: /bin/bash -e {0}
-2021-04-04T18:08:46.1846785Z env:
-2021-04-04T18:08:46.1849617Z   SSH_PRIVATE_KEY: 
-2021-04-04T18:08:46.1853975Z   SSH_KEY_PATH: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi/private.key
-2021-04-04T18:08:46.1858398Z ##[endgroup]
-2021-04-04T18:08:46.5020252Z Warning: Permanently added 'piwg.local,192.168.6.11' (ECDSA) to the list of known hosts.
-2021-04-04T18:08:47.2771605Z Warning: Permanently added 'piwg.local,192.168.6.11' (ECDSA) to the list of known hosts.
-2021-04-04T18:08:56.2100891Z WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
-2021-04-04T18:08:56.2107111Z Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
-2021-04-04T18:08:56.2114487Z To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
-2021-04-04T18:08:56.2537659Z Defaulting to user installation because normal site-packages is not writeable
-2021-04-04T18:08:57.5349147Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-2021-04-04T18:08:57.5390817Z Requirement already satisfied: configparser in /home/pi/.local/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (5.0.2)
-2021-04-04T18:08:57.5412488Z Requirement already satisfied: paho-mqtt in /home/pi/.local/lib/python3.7/site-packages (from -r requirements.txt (line 2)) (1.5.1)
-2021-04-04T18:09:00.4180340Z Post job cleanup.
-2021-04-04T18:09:00.7995924Z [command]/usr/bin/git version
-2021-04-04T18:09:00.8147501Z git version 2.20.1
-2021-04-04T18:09:00.8264112Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2021-04-04T18:09:00.8376901Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :
-2021-04-04T18:09:00.9148979Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2021-04-04T18:09:00.9229225Z http.https://github.com/.extraheader
-2021-04-04T18:09:00.9257454Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-2021-04-04T18:09:00.9389531Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :
-2021-04-04T18:09:01.0328489Z Cleaning up orphan processes
+2021-04-04T18:34:46.1536010Z   SSH_KEY_PATH: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi/private.key
+2021-04-04T18:34:46.1541066Z ##[endgroup]
+2021-04-04T18:34:46.2191144Z ##[group]Run sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
+2021-04-04T18:34:46.2196935Z [36;1msed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini[0m
+2021-04-04T18:34:46.2203514Z [36;1mscp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin[0m
+2021-04-04T18:34:46.2212718Z [36;1mssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "cd ~/bin/; pip3 install -r requirements.txt; sudo systemctl restart self_monitoring"[0m
+2021-04-04T18:34:46.2219560Z [36;1mrm $SSH_KEY_PATH[0m
+2021-04-04T18:34:46.2309009Z shell: /bin/bash -e {0}
+2021-04-04T18:34:46.2311829Z env:
+2021-04-04T18:34:46.2314602Z   SSH_PRIVATE_KEY: 
+2021-04-04T18:34:46.2318966Z   SSH_KEY_PATH: /usr/local/share/actions-runner/_work/sf-m21-RPi/sf-m21-RPi/private.key
+2021-04-04T18:34:46.2323292Z ##[endgroup]
+2021-04-04T18:34:46.5713662Z Warning: Permanently added 'piwg.local,192.168.6.11' (ECDSA) to the list of known hosts.
+2021-04-04T18:34:47.4348489Z Warning: Permanently added 'piwg.local,192.168.6.11' (ECDSA) to the list of known hosts.
+2021-04-04T18:34:56.2542271Z WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+2021-04-04T18:34:56.2557415Z Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+2021-04-04T18:34:56.2569676Z To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+2021-04-04T18:34:56.2669004Z Defaulting to user installation because normal site-packages is not writeable
+2021-04-04T18:34:57.4784727Z Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+2021-04-04T18:34:57.5292903Z Requirement already satisfied: configparser in /home/pi/.local/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (5.0.2)
+2021-04-04T18:34:57.5339238Z Requirement already satisfied: paho-mqtt in /home/pi/.local/lib/python3.7/site-packages (from -r requirements.txt (line 2)) (1.5.1)
+2021-04-04T18:35:00.5215507Z Post job cleanup.
+2021-04-04T18:35:00.9184301Z [command]/usr/bin/git version
+2021-04-04T18:35:00.9390378Z git version 2.20.1
+2021-04-04T18:35:00.9514351Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2021-04-04T18:35:00.9704459Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :
+2021-04-04T18:35:01.0929576Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2021-04-04T18:35:01.1042862Z http.https://github.com/.extraheader
+2021-04-04T18:35:01.1081296Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2021-04-04T18:35:01.1244413Z [command]/usr/bin/git submodule foreach --recursive git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :
+2021-04-04T18:35:01.2601855Z Cleaning up orphan processes

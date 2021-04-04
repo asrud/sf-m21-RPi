@@ -2,7 +2,7 @@
 VERSION = "0.10"
 
 import os
-# import glob
+import glob
 import time
 import signal
 import sys
@@ -54,7 +54,7 @@ def init():
     client = mqtt(DEVICE_ID)
     client.username_pw_set(MQTT_USER, MQTT_PASS)
     client.connect(host=MQTT_SERVER, port=MQTT_PORT)
-    #client.publish("tele/"+device_id+"/Connected", time.strftime("%H:%M:%S %d/%m/%Y", time.localtime()))
+    # client.publish("tele/"+device_id+"/Connected", time.strftime("%H:%M:%S %d/%m/%Y", time.localtime()))
     client.publish("Connected", time.strftime("%d/%m/%Y %H:%M:%S", time.localtime()))
     client.loop_start()
 
