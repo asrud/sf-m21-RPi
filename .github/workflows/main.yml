@@ -67,6 +67,7 @@ jobs:
         sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
         scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin
         ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "pkill -f self_monitoring.py; cd ~/bin/; ./self_monitoring.py &"
+        rm $SSH_KEY_PATH
       env:
         SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
         SSH_KEY_PATH: ${{ github.workspace }}/private.key
