@@ -2,7 +2,7 @@
 VERSION = "0.10"
 
 import os
-import glob
+# import glob
 import time
 import signal
 import sys
@@ -34,7 +34,7 @@ def init():
     try:
         # os.environ.get("MQTT_SERVER")
         MQTT_SERVER = os.environ["MQTT_SERVER"]
-        MQTT_PORT = os.environ["MQTT_PORT"]
+        MQTT_PORT = int(os.environ["MQTT_PORT"])
         MQTT_USER = os.environ["MQTT_USER"]
         MQTT_PASS = os.environ["MQTT_PASS"]
     except KeyError as ke:
