@@ -62,7 +62,7 @@ jobs:
         SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
         SSH_KEY_PATH: ${{ github.workspace }}/private.key
 
-    -name: Deploy
+    - name: Deploy
       run: |
         sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
         scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin
