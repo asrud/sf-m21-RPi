@@ -25,7 +25,7 @@ jobs:
 
     - name: Set up Python in a virtual env
       run: |
-        if [[ `uname` != "Darwin" ]]; then sudo apt -y install python3-venv; fi
+        if [[ `uname` != "Darwin" ]]; then sudo apt-get -y install python3-venv; fi
         python3 -m venv .env
         
     - name: Install dependencies
@@ -46,4 +46,27 @@ jobs:
     - name: Run
       run: |
         source .env/bin/activate
-        src/main.py
+        # Tests not implemented yet
+        # src/main.py 
+        echo "$WORKDIR"
+      env:
+        WORKDIR: ${{ github.workspace }}
+
+    - name: Prepare SSH key
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_KEY_SKF" > $SSH_KEY_PATH
+        sudo chmod 600 $SSH_KEY_PATH
+      shell: bash
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+        SSH_KEY_PATH: ${{ github.workspace }}/private.key
+
+    -name: Deploy
+      run: |
+        sed -i 's/DeviceID = RPi4sys/DeviceID = PIWGsys/g' src/self_monitoring.ini
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH -r src/* pi@piwg.local:~/bin
+        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY_PATH pi@piwg.local "pkill -f self_monitoring.py; cd ~/bin/; ./self_monitoring.py &"
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+        SSH_KEY_PATH: ${{ github.workspace }}/private.key
